@@ -76,6 +76,7 @@ class game():
 	def run(self):
 		while self.mainLoop:
 			self.clock.tick(self.FPS)
+			self.frame_count += 1
 			self.events()
 			self.update()
 			self.sprites_draw()
@@ -439,7 +440,7 @@ class scratchSprite():
 		return distance
 
 	def touching(self, other):
-		if self.rect.colliderect(other.rect):
+		if self.rect.colliderect(other.rect) and self.visible:
 			# Pixel perfect collision
 			offset = (other.rect.x - self.rect.x, other.rect.y - self.rect.y)
 			result = self.mask.overlap(other.mask, offset)
