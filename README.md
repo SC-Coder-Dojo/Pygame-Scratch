@@ -10,6 +10,7 @@ https://www.python.org/downloads/
 - **Make sure you tick 'Add Python 3.7 to PATH' when installing**
 
 ## Install Pygame
+### Windows
 - Launch the command prompt, cmd.exe
 - use pip to install pygame with
 ```
