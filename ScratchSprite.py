@@ -140,11 +140,6 @@ class game():
 			print("	 Make sure you have a Costumes folder")
 			print("  that contains .png files of your costumes")
 
-	def draw_text(self, text, x, y, size=40, color=Color("black")):
-		font = pygame.font.SysFont('Arial', size)
-		text_render = font.render(text, True, color)
-		self.win.blit(text_render, (x, y))
-
 
 #########################################################################################
 # scratchSprite Class                                                                   #
@@ -559,8 +554,6 @@ class text_box():
 		self.game.text_box_list.append(self)
 
 	def draw(self, win):
-		print(self.variable)
-
 		print_text = copy(self.text)
 		if self.variable is not None:
 			print_text += str(self.variable)
