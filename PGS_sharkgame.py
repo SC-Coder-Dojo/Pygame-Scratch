@@ -37,9 +37,11 @@ class fish(scratchSprite):
 		self.edge_bounce()
 
 		if self.touching(bruce):
+			self.visible = False
 			self.game.broadcast("Bite")
-			self.delete = True
 			bruce.points += 5
+			self.delete = True
+			
 		
 	def broadcast(self, message):
 		if message == "Test":
@@ -63,9 +65,10 @@ class chasing_bad_fish(scratchSprite):
 		self.edge_bounce()
 
 		if self.touching(bruce):
-			self.hide()
-			self.goto_random()
+			self.visible = False
+			self.game.broadcast("Bite Yuck")
 			bruce.points -= 10
+			self.goto_random()
 			self.wait(500)
 
 		
@@ -79,8 +82,14 @@ class shark(scratchSprite):
 		super().__init__(game, x, y, size, costume)
 
 		self.points = 0
+		self.reset_costume = 0
 
 	def update(self):
+		if self.reset_costume <= 0:
+			self.costume = "shark-a.png"
+		else:
+			self.reset_costume -= 1
+
 		if self.game.keyList[K_w]:	# if w key pressed
 			self.y -= 5
 		if self.game.keyList[K_s]:
@@ -95,7 +104,10 @@ class shark(scratchSprite):
 	def broadcast(self, message):
 		if message == "Bite":
 			self.costume = "shark-b.png"
-			print("Chomp")
+			self.reset_costume = 10
+		if message == "Bite Yuck":
+			self.costume = "shark-c.png"
+			self.reset_costume = 30
 
 
 #####################################################################
@@ -108,8 +120,6 @@ game = game(width, height)
 game.bg_color = Color("white")		# Background color
 game.background = "Underwater.png"	# Background image
 
-# game.show_hit_box = True
-
 #####################################################################
 # Add sprites here													#
 #####################################################################
@@ -117,16 +127,8 @@ game.background = "Underwater.png"	# Background image
 stage(game)
 
 bruce = shark(game)
-bruce.costume = "shark-b.png"
 bruce.costume = "shark-a.png"
 bruce.rotation_style = "left_right"
-
-# good_fish_one = fish(game)
-# good_fish_one.costume = "fish2.png"
-# good_fish_one.size = 50
-
-# for i in range(5):
-# 	fish(game, size=50, costume="fish2.png")
 
 bad_fish_one = chasing_bad_fish(game, 100, 100, size=70, costume="fish4.png")
 

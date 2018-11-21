@@ -21,24 +21,21 @@ class turtle(scratchSprite):
 		super().__init__(game, x, y, size, costume)
 
 		self.pen_down()
-		self.num = 6
+		self.num = 1
 
 	def update(self):
-		if self.num > 0:
-			self.angle = random.randint(70, 100)
-			for i in range(20, 300):
-				self.move(i)
-				self.left(self.angle)
-			self.pen = False
-			self.goto_random()
-			self.pen = True
-			self.num -= 1
+		angle = 89
+
+		self.move(self.num)
+		self.left(angle)
+
+		self.num += 1
 
 
 #####################################################################
 
 width = 1000				# Width of the window
-height = 800				# Height of the window
+height = 600				# Height of the window
 game = game(width, height)
 
 game.bg_color = Color("white")		# Background color

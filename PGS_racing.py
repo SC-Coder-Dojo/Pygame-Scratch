@@ -41,7 +41,7 @@ class car_one(scratchSprite):
 
 		if self.touching(racecourse):
 			self.hide()
-			self.goto(400, 670)
+			self.goto(380, 520)
 			self.direc = 90
 			self.wait(100)
 
@@ -69,7 +69,7 @@ class car_two(scratchSprite):
 
 		if self.touching(racecourse):
 			self.hide()
-			self.goto(400, 720)
+			self.goto(440, 540)
 			self.direc = 90
 			self.wait(100)
 
@@ -89,11 +89,12 @@ class course(scratchSprite):
 #####################################################################
 
 width = 1000				# Width of the window
-height = 800				# Height of the window
+height = 600				# Height of the window
 game = game(width, height)
 
 
 game.bg_color = Color("white")		# Background color
+game.background = "Racetrack.png"
 
 game.show_hit_box = False	# For Testing purposes
 
@@ -106,11 +107,11 @@ stage(game)
 racecourse = course(game, 0, 0)
 racecourse.costume = "Racetrack2.png"
 
-red_car = car_one(game, 400, 670)
+red_car = car_one(game, 380, 520)
 red_car.costume = "red_car.png"
 red_car.size = 10
 
-blue_car = car_two(game, 400, 720)
+blue_car = car_two(game, 440, 540)
 blue_car.costume = "blue_car.png"
 blue_car.size = 10
 

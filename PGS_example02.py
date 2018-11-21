@@ -34,8 +34,7 @@ class stage(stage):
 		super().__init__(game)
 
 	def update(self):
-		if self.game.keyList[pygame.K_SPACE]:
-			self.game.broadcast("Start Game")
+		pass
 
 
 class fish(scratchSprite):
@@ -84,7 +83,7 @@ class shark(scratchSprite):
 
 
 width = 1000				# Width of the window
-height = 800				# Height of the window
+height = 600				# Height of the window
 game = game(width, height)
 
 game.bg_color = Color("white")		# Background color
