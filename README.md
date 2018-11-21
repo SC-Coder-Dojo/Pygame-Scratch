@@ -2,7 +2,7 @@
 
 Python library created to help create games with pygame using the scratch commands
 
-# Installing
+
 ## Install Python
 - To run you will need to have Python installed
 - install the latest version at
