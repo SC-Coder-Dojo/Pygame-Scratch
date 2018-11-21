@@ -11,11 +11,10 @@ https://www.python.org/downloads/
 
 ## Install Pygame
 - Launch cmd.exe
-- enter
+- use pip to install pygame with
 ```
 python -m pip install -U pygame --user
 ```
-
 - to confirm it worked try
 ```
 python -m pygame.examples.aliens
