@@ -10,7 +10,8 @@ https://www.python.org/downloads/
 - **Make sure you tick 'Add Python 3.7 to PATH' when installing**
 
 ## Install Pygame
-- Launch cmd.exe
+### Windows
+- Launch the command prompt, cmd.exe
 - use pip to install pygame with
 ```
 python -m pip install -U pygame --user
@@ -19,3 +20,4 @@ python -m pip install -U pygame --user
 ```
 python -m pygame.examples.aliens
 ```
+- If you get __'PermissionError: [WinError 5] Access is denied'__, before starting the command prompt right click and "Run as administrator"
