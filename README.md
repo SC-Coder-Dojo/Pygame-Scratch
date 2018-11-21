@@ -19,4 +19,4 @@ python -m pip install -U pygame --user
 ```
 python -m pygame.examples.aliens
 ```
-*If you get **'PermissionError: [WinError 5] Access is denied'**, before starting the command prompt right click and "Run as administrator" *
+- If you get __'PermissionError: [WinError 5] Access is denied'__, before starting the command prompt right click and "Run as administrator"
