@@ -23,6 +23,7 @@ class fish(scratchSprite):
 		super().__init__(game, x, y, size, costume) # Keep This
 		self.hide()
 		self.goto_random()
+		self.rotation_style = "left_right"
 
 	def update(self):
 		self.show()
@@ -131,6 +132,11 @@ bruce.costume = "shark-a.png"
 bruce.rotation_style = "left_right"
 
 bad_fish_one = chasing_bad_fish(game, 100, 100, size=70, costume="fish4.png")
+bad_fish_one.rotation_style = "left_right"
+
+bruce.points = 100
+
+text_box(game, "Points: ", bruce.points, 20, 20)
 
 #####################################################################
 
