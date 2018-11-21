@@ -134,8 +134,6 @@ bruce.rotation_style = "left_right"
 bad_fish_one = chasing_bad_fish(game, 100, 100, size=70, costume="fish4.png")
 bad_fish_one.rotation_style = "left_right"
 
-bruce.points = 100
-
 text_box(game, "Points: ", bruce.points, 20, 20)
 
 #####################################################################
