@@ -1,7 +1,5 @@
 # .gitignore
 __pycache__
-Background
-Costumes
 venv
 env
 .pytest_cache
