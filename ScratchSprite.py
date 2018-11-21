@@ -35,6 +35,8 @@ class game():
 		self.default_costume = None
 		self.load_default_costume()
 
+		self.text_box_list = []
+
 
 	@property
 	def w(self):
@@ -74,6 +76,7 @@ class game():
 	
 
 	def run(self):
+		pygame.init()
 		while self.mainLoop:
 			self.clock.tick(self.FPS)
 			self.frame_count += 1
@@ -113,9 +116,15 @@ class game():
 			self.win.fill(self.bg_color)
 		else:
 			self.win.blit(self.background, (0, 0))
+
 		self.win.blit(self.pen_surface, (0, 0))
+
 		for s in self.sprites:
 			s.draw(self.win)
+
+		for tb in self.text_box_list:
+			tb.draw(self.win)
+
 		pygame.display.update()	
 
 	def add_sprite(self, sprite):
@@ -130,6 +139,11 @@ class game():
 			print("Scratch_Cat missing from \\Costumes folder")
 			print("	 Make sure you have a Costumes folder")
 			print("  that contains .png files of your costumes")
+
+	def draw_text(self, text, x, y, size=40, color=Color("black")):
+		font = pygame.font.SysFont('Arial', size)
+		text_render = font.render(text, True, color)
+		self.win.blit(text_render, (x, y))
 
 
 #########################################################################################
@@ -530,6 +544,32 @@ class stage():
 	def wait(self, time):
 		self.wait_time = self.game.time + time
 		self.waiting = True
+
+
+class text_box():
+	def __init__(self, game, text, variable, x, y, size = 40, color = Color("black")):
+		self.game = game
+		self.text = text
+		self.variable = variable
+		self.x = x
+		self.y = y
+		self.size = size
+		self.color = color
+
+		self.game.text_box_list.append(self)
+
+	def draw(self, win):
+		print(self.variable)
+
+		print_text = copy(self.text)
+		if self.variable is not None:
+			print_text += str(self.variable)
+
+		font = pygame.font.SysFont('Arial', self.size)
+		
+		text_render = font.render(print_text, True, self.color)
+		win.blit(text_render, (self.x, self.y))
+
 
 
 #########################################################################################
