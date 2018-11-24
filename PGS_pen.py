@@ -1,6 +1,7 @@
 import random
 import pygame
 from pygame import Color
+from pygame.locals import *
 from ScratchSprite import *
 
 #####################################################################
