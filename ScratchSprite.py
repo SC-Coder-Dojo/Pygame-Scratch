@@ -542,9 +542,10 @@ class stage():
 
 
 class text_box():
-	def __init__(self, game, text, variable, x, y, size = 40, color = Color("black")):
+	def __init__(self, game, text, other, variable, x, y, size = 40, color = Color("black")):
 		self.game = game
 		self.text = text
+		self.other = other
 		self.variable = variable
 		self.x = x
 		self.y = y
@@ -556,7 +557,7 @@ class text_box():
 	def draw(self, win):
 		print_text = copy(self.text)
 		if self.variable is not None:
-			print_text += str(self.variable)
+			print_text += str(self.other.__dict__[self.variable])
 
 		font = pygame.font.SysFont('Arial', self.size)
 		
