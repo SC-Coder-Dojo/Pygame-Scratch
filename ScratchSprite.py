@@ -20,8 +20,11 @@ class game():
 		self.win = pygame.display.set_mode((width, height))
 		self.clock = pygame.time.Clock()
 		self.FPS = 60
+		
 		self.bg_color = Color("white")
+		self.backgrounds = []
 		self.background = background
+
 		self.keyList = None
 		self.stage = None
 
@@ -148,6 +151,7 @@ class game():
 
 class scratchSprite():
 	rotation_style = ["all_around", "left_right", "no_rotation"]
+	scratchSprite_count = 0
 
 	def __init__(self, 
 				 game, 
@@ -161,6 +165,8 @@ class scratchSprite():
 		self.game = game
 		self.game.add_sprite(self)
 
+		scratchSprite.scratchSprite_count += 1
+		
 		# Rectangle
 		self.rect = pygame.Rect((0, 0), (100, 100))
 		if x and y:
