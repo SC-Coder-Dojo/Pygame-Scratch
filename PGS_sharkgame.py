@@ -9,7 +9,7 @@ from ScratchSprite import *
 #####################################################################
 
 
-class stage(stage):
+class Stage(Stage):
 	def __init__(self, game):
 		super().__init__(game)
 
@@ -18,7 +18,7 @@ class stage(stage):
 		self.wait(1000)
 
 
-class fish(scratchSprite):
+class fish(ScratchSprite):
 	def __init__(self, game, x=None, y=None, size=100, costume=None):
 		super().__init__(game, x, y, size, costume) # Keep This
 		self.hide()
@@ -49,7 +49,7 @@ class fish(scratchSprite):
 			pass
 
 
-class chasing_bad_fish(scratchSprite):
+class chasing_bad_fish(ScratchSprite):
 	def __init__(self, game, x=None, y=None, size=100, costume=None):
 		super().__init__(game, x, y, size, costume) # Keep This
 		self.hide()
@@ -78,7 +78,7 @@ class chasing_bad_fish(scratchSprite):
 			pass
 
 
-class shark(scratchSprite):
+class shark(ScratchSprite):
 	def __init__(self, game, x=None, y=None, size=100, costume=None):
 		super().__init__(game, x, y, size, costume)
 
@@ -115,7 +115,7 @@ class shark(scratchSprite):
 
 width = 1000				# Width of the window
 height = 600				# Height of the window
-game = game(width, height)
+game = Game(width, height)
 
 
 game.bg_color = Color("white")		# Background color
@@ -125,7 +125,7 @@ game.background = "Underwater.png"	# Background image
 # Add sprites here													#
 #####################################################################
 
-stage(game)
+Stage(game)
 
 bruce = shark(game)
 bruce.costume = "shark-a.png"
@@ -134,7 +134,7 @@ bruce.rotation_style = "left_right"
 bad_fish_one = chasing_bad_fish(game, 100, 100, size=70, costume="fish4.png")
 bad_fish_one.rotation_style = "left_right"
 
-text_box(game, "Points: ", bruce, 'points', 20, 20)
+TextBox(game, "Points: ", bruce, 'points', 20, 20)
 
 #####################################################################
 

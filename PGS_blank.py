@@ -8,7 +8,7 @@ from ScratchSprite import *
 # DESIGN YOUR SPRITES												#
 #####################################################################
 
-class example_sprite(scratchSprite):
+class example_sprite(ScratchSprite):
 	def __init__(self, game, x=None, y=None, size=100, costume=None):
 		super().__init__(game, x, y, size=size, costume=costume) # Keep This
 		# This code runs when the sprite is created
@@ -31,7 +31,7 @@ class example_sprite(scratchSprite):
 			pass
 
 
-class stage(stage):
+class Stage(Stage):
 	def __init__(self, game):
 		super().__init__(game)
 
@@ -43,7 +43,7 @@ class stage(stage):
 
 width = 1000				# Width of the window
 height = 600				# Height of the window
-game = game(width, height)
+game = Game(width, height)
 
 game.bg_color = Color("white")		# Background color
 
@@ -51,7 +51,7 @@ game.bg_color = Color("white")		# Background color
 # Add sprites and variable here										#
 #####################################################################
 
-stage(game)
+Stage(game)
 
 # Example cat sprtie
 cat = example_sprite(game, 400, 400)	# Create an example_sprite named cat

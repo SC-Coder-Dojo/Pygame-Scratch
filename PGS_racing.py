@@ -9,7 +9,7 @@ from ScratchSprite import *
 #####################################################################
 
 
-class stage(stage):
+class Stage(Stage):
 	def __init__(self, game):
 		super().__init__(game)
 		self.time = 5000
@@ -18,7 +18,7 @@ class stage(stage):
 		self.time -= 1
 
 
-class car_one(scratchSprite):
+class car_one(ScratchSprite):
 	def __init__(self, game, x=None, y=None, size=100, costume=None):
 		super().__init__(game, x, y, size, costume)
 
@@ -46,7 +46,7 @@ class car_one(scratchSprite):
 			self.wait(100)
 
 
-class car_two(scratchSprite):
+class car_two(ScratchSprite):
 	def __init__(self, game, x=None, y=None, size=100, costume=None):
 		super().__init__(game, x, y, size, costume)
 
@@ -74,7 +74,7 @@ class car_two(scratchSprite):
 			self.wait(100)
 
 
-class course(scratchSprite):
+class course(ScratchSprite):
 	def __init__(self, game, x=None, y=None, size=100, costume=None):
 		super().__init__(game, x, y, size, costume)
 
@@ -90,7 +90,7 @@ class course(scratchSprite):
 
 width = 1000				# Width of the window
 height = 600				# Height of the window
-game = game(width, height)
+game = Game(width, height)
 
 
 game.bg_color = Color("white")		# Background color
@@ -102,7 +102,7 @@ game.show_hit_box = False	# For Testing purposes
 # Add sprites here													#
 #####################################################################
 
-stage(game)
+Stage(game)
 
 racecourse = course(game, 0, 0)
 racecourse.costume = "Racetrack2.png"

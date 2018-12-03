@@ -1,6 +1,6 @@
 
 # Empty example sprite
-class example_empty_sprite(scratchSprite):
+class example_empty_sprite(ScratchSprite):
 	def __init__(self, game, x=None, y=None):	
 		super().__init__(game, x, y) # Keep This
 		### This code runs when the sprite is created
@@ -18,7 +18,7 @@ class example_empty_sprite(scratchSprite):
 
 
 # Example fish sprite
-class example_fish_sprite(scratchSprite):
+class example_fish_sprite(ScratchSprite):
 	def __init__(self, game, x=None, y=None):
 		super().__init__(game, x, y) # Keep This
 
