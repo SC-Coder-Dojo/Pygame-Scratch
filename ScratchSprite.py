@@ -159,9 +159,12 @@ class Game():
 
 	def load_costume(self, costume_name):
 		costume_path = os.path.join("Costumes", costume_name)
-		
-		if os.path.isfile(costume_path) and not ".db" in costume_name:
+
+		try:
 			self.costumes[costume_name] = pygame.image.load(costume_path).convert_alpha()
+		except:
+			pass
+			
 
 
 #########################################################################################
@@ -178,7 +181,7 @@ class ScratchSprite():
 				 x=None, 
 				 y=None, 
 				 size=100, 
-				 costume="Scratch_Cat.png", 
+				 costume=None, 
 				 direc=90, 
 				 color=(0,0,0)):
 		
@@ -265,18 +268,14 @@ class ScratchSprite():
 
 	@costume.setter
 	def costume(self, costume_name):
-		if costume_name is None:
-			if self.game.default_costume is not None:
-				self._costume = self.game.default_costume
-			else:
-				self._costume = None
-		elif costume_name in self.game.costumes:
+		try:
 			self._costume = self.game.costumes[costume_name]
-		else:
-			print("Invalid costume name {}, try".format(costume_name))
-			print(self.game.costumes.keys())
+		except KeyError as e:
+			if costume_name is not None:
+				print("Invalid costume name {}, try".format(costume_name))
+				print(list(self.game.costumes.keys()))
 			self._costume = self.game.default_costume
-
+		
 		self.costume_rect = self.costume.get_rect()
 		self.size_costume()
 		self.rotate_costume()
@@ -575,12 +574,12 @@ class TextBox():
 
 def main():
 	# TESTING CODE
-	hello = Game(800, 800)
-	ScratchSprite(hello, 200, 200, costume="fish4.png")
-	ScratchSprite(hello, 600, 600, costume="test.png")
-	ScratchSprite(hello)
+	game = Game(800, 800)
+	ScratchSprite(game, 200, 200, costume="fish4.png")
+	ScratchSprite(game, 600, 600, costume="test.png")
+	ScratchSprite(game)
 
-	hello.run()
+	game.run()
 
 if __name__ == '__main__':
     main()
