@@ -21,7 +21,7 @@ from copy import copy
 # game Class                                                                            #
 #########################################################################################
 
-class game():
+class Game():
 	def __init__(self, width, height, background=None):
 		self.sprites = []
 		self.mainLoop = True
@@ -169,9 +169,9 @@ class game():
 #########################################################################################
 
 
-class scratchSprite():
+class ScratchSprite():
 	rotation_style = ["all_around", "left_right", "no_rotation"]
-	scratchSprite_count = 0
+	ScratchSprite_count = 0
 
 	def __init__(self, 
 				 game, 
@@ -185,7 +185,7 @@ class scratchSprite():
 		self.game = game
 		self.game.add_sprite(self)
 
-		scratchSprite.scratchSprite_count += 1
+		ScratchSprite.ScratchSprite_count += 1
 
 		# Rectangle
 		self.rect = pygame.Rect((0, 0), (100, 100))
@@ -362,7 +362,7 @@ class scratchSprite():
 	def move(self, steps):
 		self.start_pen = self.pos
 
-		moveX, moveY = scratchSprite.from_angle(self.direc)
+		moveX, moveY = ScratchSprite.from_angle(self.direc)
 		self.x += int(moveX * steps / 2)
 		self.y += int(moveY * steps / 2)
 
@@ -526,7 +526,7 @@ class scratchSprite():
 #########################################################################################
 
 
-class stage():
+class Stage():
 	def __init__(self, game):
 		self.game = game
 		self.game.stage = self
@@ -543,7 +543,7 @@ class stage():
 		self.waiting = True
 
 
-class text_box():
+class TextBox():
 	def __init__(self, game, text, other, variable, x, y, size = 40, color = Color("black")):
 		self.game = game
 		self.text = text
@@ -575,10 +575,10 @@ class text_box():
 
 def main():
 	# TESTING CODE
-	hello = game(800, 800)
-	scratchSprite(hello, 200, 200, costume="fish4.png")
-	scratchSprite(hello, 600, 600, costume="test.png")
-	scratchSprite(hello)
+	hello = Game(800, 800)
+	ScratchSprite(hello, 200, 200, costume="fish4.png")
+	ScratchSprite(hello, 600, 600, costume="test.png")
+	ScratchSprite(hello)
 
 	hello.run()
 
