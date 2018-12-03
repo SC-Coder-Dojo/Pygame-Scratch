@@ -1,3 +1,13 @@
+"""
+Title: ScratchSprite
+Introduction:
+@author: Keva Sandy
+"""
+
+#########################################################################################
+# import                                                                                #
+#########################################################################################
+
 import pygame
 from pygame import Color
 import math
