@@ -4,6 +4,7 @@ import math
 import os
 import random
 import time
+from pprint import pprint
 from copy import copy
 
 #########################################################################################
@@ -25,6 +26,16 @@ class game():
 		self.backgrounds = []
 		self.background = background
 
+		self.costumes = {}
+
+		self.load_all_costumes()
+		if "Scratch_Cat.png" in self.costumes:
+			self.default_costume = self.costumes["Scratch_Cat.png"]
+		else:
+			print("Scratch_Cat missing from \\Costumes folder")
+			print("	 Make sure you have a Costumes folder")
+			print("  that contains .png files of your costumes")
+
 		self.keyList = None
 		self.stage = None
 
@@ -34,10 +45,6 @@ class game():
 		self.pen_surface.fill(Color("white"))
 
 		self.show_hit_box = False
-
-		self.default_costume = None
-		self.load_default_costume()
-
 		self.text_box_list = []
 
 
@@ -133,15 +140,18 @@ class game():
 	def add_sprite(self, sprite):
 		self.sprites.append(sprite)
 
-	def load_default_costume(self):
-		default_costume = os.path.join("Costumes", "Scratch_Cat.png")
 
-		if os.path.isfile(default_costume):
-			self.default_costume = pygame.image.load(default_costume).convert_alpha()
-		else:
-			print("Scratch_Cat missing from \\Costumes folder")
-			print("	 Make sure you have a Costumes folder")
-			print("  that contains .png files of your costumes")
+	def load_all_costumes(self):
+		list_costumes = os.listdir("Costumes")
+		
+		for costume_name in list_costumes:
+			self.load_costume(costume_name)
+
+	def load_costume(self, costume_name):
+		costume_path = os.path.join("Costumes", costume_name)
+		
+		if os.path.isfile(costume_path) and not ".db" in costume_name:
+			self.costumes[costume_name] = pygame.image.load(costume_path).convert_alpha()
 
 
 #########################################################################################
@@ -166,7 +176,7 @@ class scratchSprite():
 		self.game.add_sprite(self)
 
 		scratchSprite.scratchSprite_count += 1
-		
+
 		# Rectangle
 		self.rect = pygame.Rect((0, 0), (100, 100))
 		if x and y:
@@ -179,13 +189,7 @@ class scratchSprite():
 		self._size = 100
 
 		#Looks
-		self.costumes = {}
-
-		default_costume = "Scratch_Cat.png"
-		self.load_costume(default_costume)
-
 		self.costume = costume
-		
 
 		self.size = size
 		self.direc = direc
@@ -253,14 +257,15 @@ class scratchSprite():
 	def costume(self, costume_name):
 		if costume_name is None:
 			if self.game.default_costume is not None:
-				self.costumes["Scratch_Cat.png"] = self.game.default_costume
-				self._costume = self.costumes["Scratch_Cat.png"]
+				self._costume = self.game.default_costume
 			else:
 				self._costume = None
-		elif costume_name in self.costumes:
-			self._costume = self.costumes[costume_name]
+		elif costume_name in self.game.costumes:
+			self._costume = self.game.costumes[costume_name]
 		else:
-			self.load_costume(costume_name)
+			print("Invalid costume name {}, try".format(costume_name))
+			print(self.game.costumes.keys())
+			self._costume = self.game.default_costume
 
 		self.costume_rect = self.costume.get_rect()
 		self.size_costume()
@@ -271,25 +276,6 @@ class scratchSprite():
 		direc = (direc + 180) % 360 - 180
 		self._direc = direc
 		self.rotate_costume()
-	
-
-	def load_costume(self, costume_name):
-		costume_path = os.path.join("Costumes", costume_name)
-
-		if os.path.isfile(costume_path):
-			self.costumes[costume_name] = pygame.image.load(costume_path).convert_alpha()
-			self._costume = self.costumes[costume_name]
-		else:
-			print("Invalid costume name {}, try".format(costume_name))
-			list_costumes = os.listdir("Costumes")
-			del list_costumes[-1]
-			print(list_costumes)
-
-			if self.game.default_costume is not None:
-				self.costumes["Scratch_Cat.png"] = self.game.default_costume
-				self._costume = self.costumes["Scratch_Cat.png"]
-			else:
-				self._costume = None
 
 
 	def update(self):
@@ -580,8 +566,9 @@ class text_box():
 def main():
 	# TESTING CODE
 	hello = game(800, 800)
-	scratchSprite(hello, costume="fish4.png")
-	scratchSprite(hello, costume="test.png")
+	scratchSprite(hello, 200, 200, costume="fish4.png")
+	scratchSprite(hello, 600, 600, costume="test.png")
+	scratchSprite(hello)
 
 	hello.run()
 
